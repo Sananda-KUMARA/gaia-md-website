@@ -1,10 +1,10 @@
 import Navbar from '@/components/Navbar'
 import type { NextPage } from 'next'
 
-const Home: NextPage = () => {
+const Service: NextPage = () => {
   return (
     <Navbar />
   )
 }
 
-export default Home
+export default Service

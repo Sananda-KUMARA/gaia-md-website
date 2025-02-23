@@ -3,19 +3,43 @@
 @tailwind utilities;
 
 :root {
+  /* Couleurs principales */
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Vous pouvez ajouter d'autres variables */
+  --primary: #FFD700;    /* Une couleur dorée pour GAIA */
+  --text-primary: #2D3748;
+  --accent: #F59E0B;
 }
 
+/* Mode sombre */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --text-primary: #E2E8F0;
   }
 }
 
+/* Styles de base */
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+/* Vous pouvez définir des classes réutilisables */
+@layer components {
+  .gaia-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .gaia-title {
+    @apply text-4xl font-bold text-center;
+  }
+  
+  .gaia-text {
+    @apply text-lg text-gray-600 dark:text-gray-300;
+  }
 }

@@ -1,12 +1,14 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import './Navbar.css'; /*  css component  */
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className="{bg-white shadow-lg} test" >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between">
           <div className="flex space-x-7">

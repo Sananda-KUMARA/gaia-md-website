@@ -1,26 +1,27 @@
 'use client';
 import type { NextPage } from 'next';
 import Navbar from '../components/Navbar';
-import  Video  from 'next-video';
+import Video from 'next-video';
+import myVideo from '../../videos/video1.mp4';
 
 const Home: NextPage = () => {
   return (
-    <div className="space-y-8">
+    <div className="gaia-container">
       <Navbar />
-      <section className="text-center py-16 bg-yellow-50">
-        <h1 className="text-4xl font-bold mb-4 text-black">
+      <section className="py-16">
+        <h1 className="gaia-title">
           Bienvenue chez GAIA Motion Design
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="gaia-text text-center max-w-2xl mx-auto mt-4">
           Votre partenaire de confiance pour tous vos besoins de montage vidéos
         </p>
       </section>
-      
-      <div className="max-w-4xl mx-auto px-4">
-        <Video 
-          src="/videos/my-video.mp4"
+     
+      <div className="max-w-4xl mx-auto">
+        <Video
+          src={myVideo}
           controls
-          className="w-full h-auto rounded-lg shadow-lg"
+          className="w-full rounded-lg shadow-lg"
         />
       </div>
     </div>
