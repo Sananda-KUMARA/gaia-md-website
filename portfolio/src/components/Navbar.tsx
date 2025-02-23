@@ -21,6 +21,9 @@ const Navbar = () => {
               <Link href="/" className="py-4 px-2 text-gray-500 hover:text-blue-500">
                 Accueil
               </Link>
+              <Link href="/portfolio" className="py-4 px-2 text-gray-500 hover:text-blue-500">
+                Portfolio
+              </Link>
               <Link href="/services" className="py-4 px-2 text-gray-500 hover:text-blue-500">
                 Services
               </Link>
@@ -29,6 +32,9 @@ const Navbar = () => {
               </Link>
               <Link href="/about" className="py-4 px-2 text-gray-500 hover:text-blue-500">
                 A propos
+              </Link>
+              <Link href="/admin" className="py-4 px-2 text-gray-500 hover:text-blue-500">
+                Admin
               </Link>
             </div>
           </div>
@@ -65,26 +71,32 @@ const Navbar = () => {
           <Link 
             href="/" 
             className="block px-2 py-2 text-gray-500 hover:bg-blue-500 hover:text-white rounded"
-          >
-            Accueil
+          > Accueil
+          </Link>
+          <Link 
+            href="/portfolio" 
+            className="block px-2 py-2 text-gray-500 hover:bg-blue-500 hover:text-white rounded"
+          > Portfolio
           </Link>
           <Link 
             href="/services" 
             className="block px-2 py-2 text-gray-500 hover:bg-blue-500 hover:text-white rounded"
-          >
-            Services
+          > Services
           </Link>
           <Link 
             href="/contact" 
             className="block px-2 py-2 text-gray-500 hover:bg-blue-500 hover:text-white rounded"
-          >
-            Contact
+          > Contact
           </Link>
           <Link 
             href="/about" 
             className="block px-2 py-2 text-gray-500 hover:bg-blue-500 hover:text-white rounded"
-          >
-            A propos
+          >A propos
+          </Link>
+          <Link 
+            href="/admin" 
+            className="block px-2 py-2 text-gray-500 hover:bg-blue-500 hover:text-white rounded"
+          >Admin
           </Link>
         </div>
       </div>
