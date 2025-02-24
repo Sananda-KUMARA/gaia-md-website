@@ -46,40 +46,8 @@ videos/*
 !videos/*.js
 !videos/*.ts
 public/_next-video
-./videos/*.*
-
-# next-video
-videos/*
-!videos/*.json
-!videos/*.js
-!videos/*.ts
-public/_next-video
-
-# next-video
-y/*
-!y/*.json
-!y/*.js
-!y/*.ts
-public/_next-video
-
-# next-video
-videos/*
-!videos/*.json
-!videos/*.js
-!videos/*.ts
-public/_next-video
-
-# next-video
-videos/*
-!videos/*.json
-!videos/*.js
-!videos/*.ts
-public/_next-video
-
-# next-video
-videos/*
-!videos/*.json
-!videos/*.js
-!videos/*.ts
-public/_next-video
-public/videos/*.*
+videos/video5.mp4.json
+videos/video4.mp4.json
+videos/video3.mp4.json
+videos/video2.mp4.json
+videos/video1.mp4.json
