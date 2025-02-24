@@ -1,4 +1,4 @@
-Web site prototype for the GAIA MOTION DESIGN Studio enterprise.
+Web site prototype for GAIA MOTION DESIGN Studio
 
 Techno : react.js, next.js, ...
 

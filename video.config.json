@@ -1,0 +1,16 @@
+{
+  "provider": "static",
+  "input": "videos",
+  "output": "public/videos",
+  "staticUrl": "/videos",
+  "mux": {
+    "enabled": true,
+    "forceProvider": "static",
+    "tokenId": "985509e0-fab6-467c-ba03-958f8241f59f",
+    "tokenSecret": "UUHtteHmEKWWf/0JdtbwAg7/b6n4rqhGIBimBByNcCYMsUw+sCnlR62xGrO1mjJ+LvCQO5au7/L",
+    "directory": true,
+    "domain": false,
+    "env": true
+  },
+  "force": true
+}

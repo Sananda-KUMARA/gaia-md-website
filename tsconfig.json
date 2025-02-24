@@ -14,6 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "typeRoots": ["./node_modules/@types", "./types"],
     "plugins": [
       {
         "name": "next"
@@ -23,6 +24,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["video.d.ts", "video.d.ts", "video.d.ts", "video.d.ts", "video.d.ts", "video.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js", "next-video.config.js"],
+  "include": ["video.d.ts", "video.d.ts", "video.d.ts", "video.d.ts", "video.d.ts", "video.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.ts", "next-video.config.js"],
   "exclude": ["node_modules"]
 }
