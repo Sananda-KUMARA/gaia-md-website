@@ -4,6 +4,7 @@ Techno : react.js, next.js, ...
 
 
 ![logo_HD_edited](https://github.com/user-attachments/assets/14e9cf5f-cc60-49d8-902e-854e7d45901c)
+![website_gaia_motion_design](https://github.com/user-attachments/assets/78cbfd7d-3437-4b67-b179-b2df0984a227)
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
