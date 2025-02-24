@@ -1,8 +1,8 @@
 'use client'
 
 const stats = [
-  { label: 'Une croissance exponentielle', value: '20 montages pro déjà effectués sur Adobe Première et After Effects' },
-  { label: 'Nouveaux clients quotidien', value: 'Plus de 20 actuellement' },
+  { label: 'Une passion sans limite à part celle de notre imagination créative', value: 'Montages pro effectués sur Adobe Première, After Effects, Da Vinci Resolve, ...' },
+  { label: 'Déposez votre avis sur notre site ...', value: 'Nouveaux clients quotidien' },
 ]
 
 const values = [

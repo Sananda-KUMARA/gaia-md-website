@@ -14,7 +14,7 @@
 }
 
 /* Mode sombre */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: white) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;

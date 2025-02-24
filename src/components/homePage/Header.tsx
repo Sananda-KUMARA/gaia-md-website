@@ -20,15 +20,15 @@ export default function Header() {
 
   return (
     <div className="bg-white">
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0  mb-5 z-50 bg-white">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
-              alt=""
-              src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto"
+              alt="Logo Gaia Motion Design"
+              src="logo_HD_clean_transparent.png"
+              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
             />
           </a>
         </div>
@@ -60,19 +60,19 @@ export default function Header() {
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
+              <span className="sr-only">Gaia Motion Design</span>
+                   <img
+              alt="Logo Gaia Motion Design"
+              src="logo_HD_clean_transparent.png"
+              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
+            />
             </a>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
             >
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">Fermer menu</span>
               <XMarkIcon aria-hidden="true" className="size-6" />
             </button>
           </div>
