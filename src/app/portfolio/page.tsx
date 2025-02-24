@@ -1,8 +1,10 @@
-import Navbar from '@/components/Navbar'
 import type { NextPage } from 'next'
+
+import { useState } from 'react'
+import { Dialog, DialogPanel } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+
 import Video from 'next-video';
-
-
 
 // Importation des vidéos
 import video1 from '../../../videos/video1.mp4';
@@ -10,6 +12,8 @@ import video2 from '../../../videos/video2.mp4';
 import video3 from '../../../videos/video3.mp4';
 import video4 from '../../../videos/video4.mp4';
 import video5 from '../../../videos/video5.mp4';
+import Header from '@/components/homePage/Header';
+import Footer from '@/components/homePage/Footer';
 
 type VideoProject = {
   id: number;
@@ -54,7 +58,7 @@ const videoProjects: VideoProject[] = [
 const Portfolio: NextPage = () => {
   return (
     <>
-      <Navbar />
+      <Header />
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-center mb-8">Notre Portfolio</h1>
         
@@ -80,6 +84,7 @@ const Portfolio: NextPage = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

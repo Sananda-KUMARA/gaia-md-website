@@ -1,10 +1,14 @@
-import Navbar from '@/components/Navbar'
+import Footer from '@/components/homePage/Footer'
+import Header from '@/components/homePage/Header'
 import type { NextPage } from 'next'
 
 const Admin: NextPage = () => {
-  return (
-    <Navbar />
-  )
+   return (
+     <>
+       <Header />
+       <Footer />
+     </>
+   )
 }
 
 export default Admin

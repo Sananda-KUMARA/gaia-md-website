@@ -1,9 +1,13 @@
-import Navbar from '@/components/Navbar'
+import Footer from '@/components/homePage/Footer'
+import Header from '@/components/homePage/Header'
 import type { NextPage } from 'next'
 
 const Contact: NextPage = () => {
   return (
-    <Navbar />
+    <>
+      <Header />
+      <Footer />
+    </>
   )
 }
 
