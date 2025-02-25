@@ -33,7 +33,7 @@ function ContactForm() {
     
     try {
       // Remplacer par vos identifiants EmailJS
-      const _result = await emailjs.send(
+      await emailjs.send(
         'service_awoq1hr',  // remplacer par votre Service ID EmailJS
         'template_fdqf8su', // remplacer par votre Template ID EmailJS
         {
