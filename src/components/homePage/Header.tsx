@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 // Navigation items
 const navigation = [
@@ -25,10 +26,13 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
+            <Image
               alt="Logo Gaia Motion Design"
-              src="logo_HD_clean_transparent.png"
+              src="/logo_HD_clean_transparent.png"
+              width={56}
+              height={56}
               className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
+              priority
             />
           </a>
         </div>
@@ -61,11 +65,13 @@ export default function Header() {
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Gaia Motion Design</span>
-                   <img
-              alt="Logo Gaia Motion Design"
-              src="logo_HD_clean_transparent.png"
-              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
-            />
+              <Image
+                alt="Logo Gaia Motion Design"
+                src="/logo_HD_clean_transparent.png"
+                width={56}
+                height={56}
+                className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
+              />
             </a>
             <button
               type="button"

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 const stats = [
   { label: 'Une passion sans limite à part celle de notre imagination créative', value: 'Montages pro effectués sur Adobe Première, After Effects, Da Vinci Resolve, ...' },
@@ -7,7 +8,7 @@ const stats = [
 
 const values = [
   {
-    name: 'Être à l\'écoute de nos clients',
+    name: 'Être à l&lsquo;écoute de nos clients',
     description:
       'Savoir identifier les attentes de nos clients et y répondre de manière efficace et rapide.',
   },
@@ -24,7 +25,7 @@ const values = [
   {
     name: 'Être proactif',
     description:
-      'Aller au devant des attentes de nos clients, et proposer plusieurs solutions en terme de Story Boarding, et d\'effets spéciaux (V-FX / A-FX).',
+      'Aller au devant des attentes de nos clients, et proposer plusieurs solutions en terme de Story Boarding, et d&lsquo;effets spéciaux (V-FX / A-FX).',
   },
   {
     name: 'Respect des délais',
@@ -34,7 +35,7 @@ const values = [
   {
     name: 'Qualité du travail',
     description:
-      'Nos créations sont soumises à votre appréciation à date de réception, et plusieurs itérations correctives sont possibles (nous contacter pour plus d\'informations).',
+      'Nos créations sont soumises à votre appréciation à date de réception, et plusieurs itérations correctives sont possibles (nous contacter pour plus d&lsquo;informations).',
   },
 ]
 
@@ -99,9 +100,11 @@ export default function HeroSection() {
             <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
               <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                 <div className="relative">
-                  <img
-                    alt=""
+                  <Image
+                    alt="Image de production vidéo"
                     src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                    width={176}
+                    height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                   />
                   <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
@@ -109,17 +112,21 @@ export default function HeroSection() {
               </div>
               <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                 <div className="relative">
-                  <img
-                    alt=""
+                  <Image
+                    alt="Image de production créative"
                     src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                    width={176}
+                    height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                   />
                   <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                 </div>
                 <div className="relative">
-                  <img
-                    alt=""
+                  <Image
+                    alt="Image d'équipe créative"
                     src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
+                    width={176}
+                    height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                   />
                   <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
@@ -127,17 +134,21 @@ export default function HeroSection() {
               </div>
               <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                 <div className="relative">
-                  <img
-                    alt=""
+                  <Image
+                    alt="Image de matériel vidéo"
                     src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
+                    width={176}
+                    height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                   />
                   <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                 </div>
                 <div className="relative">
-                  <img
-                    alt=""
+                  <Image
+                    alt="Image de production"
                     src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                    width={176}
+                    height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                   />
                   <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
@@ -157,9 +168,9 @@ export default function HeroSection() {
             <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
               <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
                 <p className="text-xl/8 text-gray-600">
-                 Notre objectif est de vous accompagner tout au long du processus d'léaboration et de conception de l'histoire que vous souahitez racontez dans le cadre de votre entreprise, ou avec vos amis.    </p>
+                 Notre objectif est de vous accompagner tout au long du processus d&lsquo;léaboration et de conception de l&lsquo;histoire que vous souahitez racontez dans le cadre de votre entreprise, ou avec vos amis.    </p>
                 <p className="mt-10 max-w-xl text-base/7 text-gray-700">
-                  Pour celà, nous somes en mesure de vous proposer des prestations de tounage sur site (prise de viue, prise de sons, éclairage, ...) jusqu'à l'édition vidéo. Nous sommes également en mesure de vous proposer des prestations de motion design et d'effets spéciaux.
+                  Pour celà, nous somes en mesure de vous proposer des prestations de tounage sur site (prise de viue, prise de sons, éclairage, ...) jusqu&lsquo;à l&lsquo;édition vidéo. Nous sommes également en mesure de vous proposer des prestations de motion design et d&lsquo;effets spéciaux.
                 </p>
               </div>
               <div className="lg:flex lg:flex-auto lg:justify-center">
@@ -179,9 +190,11 @@ export default function HeroSection() {
 
  {/* Image section */}
         <div className="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
-          <img
-            alt=""
+          <Image
+            alt="Équipe en collaboration créative"
             src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+            width={2832}
+            height={1133}
             className="aspect-5/2 w-full object-cover xl:rounded-3xl"
           />
         </div>
