@@ -1,5 +1,7 @@
 'use client'
 import React from 'react';
+import { Suspense } from 'react';
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
 
 // Footer navigation data
 const footerNavigation = {
@@ -77,6 +79,7 @@ const footerNavigation = {
 
 export default function Footer() {
   return (
+    <>
     <footer className="mt-16 sm:mt-32">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav aria-label="Footer" className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6">
@@ -102,5 +105,10 @@ export default function Footer() {
         </p>
       </div>
     </footer>
+   
+      <Suspense fallback={null}>
+        <ScrollToTopButton />
+      </Suspense>
+      </>
   )
 }

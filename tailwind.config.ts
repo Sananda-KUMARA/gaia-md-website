@@ -9,8 +9,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+       primary: {
+          DEFAULT: '#3B82F6', // Couleur principale du bouton de scroll !!! à améliorer 
+          dark: '#2563EB',    // Version plus foncée pour hover du bouton de scroll, à améliorer 
+          background: "var(--background)",
+          foreground: "var(--foreground)",
+        }
       },
     },
   },
