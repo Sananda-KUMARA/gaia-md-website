@@ -1,7 +1,7 @@
 'use client'
 
-import Header from '@/components/homePage/Header'
-import Footer from '@/components/homePage/Footer'
+import Header from '@/components/layoout/Header'
+import Footer from '@/components/layoout/Footer'
 
 import type { NextPage } from 'next'
 

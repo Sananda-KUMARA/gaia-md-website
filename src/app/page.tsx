@@ -1,11 +1,11 @@
 'use client'
 
-import Header from '@/components/homePage/Header'
-import HeroSection from '@/components/homePage/HeroSection'
-import LogoCloud from '@/components/homePage/LogoCloud'
-import TeamSection from '@/components/homePage/TeamSection'
-import BlogSection from '@/components/homePage/BlogSection'
-import Footer from '@/components/homePage/Footer'
+import Header from '@/components/layoout/Header'
+import HeroSection from '@/components/sections/HeroSection'
+import LogoCloud from '@/components/sections/LogoCloud'
+import TeamSection from '@/components/sections/TeamSection'
+import BlogSection from '@/components/sections/BlogSection'
+import Footer from '@/components/layoout/Footer'
 
 
 

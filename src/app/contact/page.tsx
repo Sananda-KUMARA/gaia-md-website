@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import Footer from '@/components/homePage/Footer';
-import Header from '@/components/homePage/Header';
+import Footer from '@/components/layoout/Footer';
+import Header from '@/components/layoout/Header';
 
 const Contact = () => {
   return (

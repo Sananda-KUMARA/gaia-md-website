@@ -1,0 +1,23 @@
+C:\developement\gaia-md-website
+├── es-lint-report
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── node_modules
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── project-structure.txt
+├── public
+├── README.md
+├── src
+├── tailwind.config.ts
+├── tsconfig.json
+├── video.config.json
+├── video.config.ts
+├── video.d.ts
+├── videos
+└── yarn.lock
+
+directory: 5 file: 14
+

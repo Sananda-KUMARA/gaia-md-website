@@ -11,8 +11,8 @@ import video2 from '../../../videos/video2.mp4';
 import video3 from '../../../videos/video3.mp4';
 import video4 from '../../../videos/video4.mp4';
 import video5 from '../../../videos/video5.mp4';
-import Header from '@/components/homePage/Header';
-import Footer from '@/components/homePage/Footer';
+import Header from '@/components/layoout/Header';
+import Footer from '@/components/layoout/Footer';
 
 type VideoProject = {
   id: number;
