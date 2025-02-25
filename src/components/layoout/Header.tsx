@@ -53,7 +53,7 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="/admin" className="text-sm/6 font-semibold text-gray-900">
+          <a href="/login" className="text-sm/6 font-semibold text-gray-900">
             Connnexion <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -96,7 +96,7 @@ export default function Header() {
               </div>
               <div className="py-6">
                 <a
-                  href="/admin"
+                  href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   Connexion
