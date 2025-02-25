@@ -1,3 +1,5 @@
+'use client'
+
 import Header from '@/components/homePage/Header'
 import Footer from '@/components/homePage/Footer'
 

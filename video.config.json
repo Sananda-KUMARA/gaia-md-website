@@ -12,5 +12,7 @@
     "domain": false,
     "env": true
   },
-  "force": true
+  "providers": {
+    "external": ["youtube", "vimeo"]
+  }
 }
