@@ -12,8 +12,7 @@ const navigation = [
   { name: 'Portfolio', href: '/portfolio' },
   { name: 'Equipe Studio', href: '/team' },
   { name: 'Contactez-nous', href: '/contact' },
-  { name: 'À Propos', href: '/about' },
-  { name: '{Admin}', href: '/admin' }
+  { name: 'Blog', href: '/blog' }
 ]
 
 export default function Header() {
@@ -54,8 +53,8 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
+          <a href="/admin" className="text-sm/6 font-semibold text-gray-900">
+            Connnexion <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -97,10 +96,10 @@ export default function Header() {
               </div>
               <div className="py-6">
                 <a
-                  href="#"
+                  href="/admin"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  Log in
+                  Connexion
                 </a>
               </div>
             </div>
