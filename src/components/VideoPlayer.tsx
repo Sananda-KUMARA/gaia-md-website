@@ -11,8 +11,7 @@ export default function VideoPlayer() {
       <Video 
         src={videoSrc}
         controls
-        width="100%"
-        height="auto"
+        className="w-full h-auto"
       />
     </div>
   )
