@@ -255,29 +255,4 @@ const EditVideo: React.FC = () => {
   );
 };
 
-export default EditVideo;styles.formGroup}>
-          <label htmlFor="title">Titre *</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            disabled={loading}
-            required
-          />
-        </div>
-        
-        <div className={styles.formGroup}>
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            rows={5}
-            disabled={loading}
-          />
-        </div>
-        
-        <div className={
+export default EditVideo;

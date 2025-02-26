@@ -16,7 +16,7 @@ interface VideoFormData {
 }
 
 const NewVideo: React.FC = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   
   // Rediriger vers la page de connexion si non authentifié
