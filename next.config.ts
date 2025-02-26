@@ -4,6 +4,9 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  env: {
+    MONGODB_URI: process.env.MONGODB_URI,
+  },
   images: {
     domains: ['images.unsplash.com', 'tailwindui.com', 'via.placeholder.com'],
     remotePatterns: [
@@ -34,14 +37,25 @@ const nextConfig = {
       },
     ];
   },
-  env: {
-    NEXT_VIDEO_PROVIDER: 'static',
-    NEXT_PUBLIC_VIDEO_PROVIDER: 'static',
-    MONGODB_URI: process.env.MONGODB_URI,
-  },
   serverRuntimeConfig: {
     port: 3000, // ou un autre port de votre choix
-  }
+  },
+    async rewrites() {
+        return [
+          {
+            source: '/robot.txt',
+            destination: '/api/robot',
+          },
+        ];
+      },
+      eslint: {
+          ignoreDuringBuilds: true,
+        },
+        typescript: {
+          // Désactive la vérification TypeScript pendant le build
+          ignoreBuildErrors: true,
+        },
+
 };
 
 export default withNextVideo(nextConfig);

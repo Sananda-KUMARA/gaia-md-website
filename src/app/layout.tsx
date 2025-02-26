@@ -17,8 +17,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gaïa Motion",
-  description: "Website Gaïa Motion Design",
+  title: {
+    template: '%s | Gaïa Motion Design',
+    default: 'Gaia MD',
+  },
+  description: 'Studio de cration numérique spécialisée dans le motion design;, l\'animation et le montage video',
+  keywords: ['Motion Design', 'Gaia', 'Studio cratif', 'montage vidéo'],
+  authors: [{ name: 'Florent LEFEVRE' }],
+  creator: 'Gaïa Motion Design',
+  publisher: 'Gaïa Motion Design',
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  }
 };
 
 export default function RootLayout({ 

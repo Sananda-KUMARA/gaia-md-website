@@ -11,8 +11,8 @@ const navigation = [
   { name: 'Services', href: '/services' },
   { name: 'Portfolio', href: '/portfolio' },
   { name: 'Equipe Studio', href: '/team' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Contactez-nous', href: '/contact' },
-  { name: 'Blog', href: '/blog' }
 ]
 
 export default function Header() {
