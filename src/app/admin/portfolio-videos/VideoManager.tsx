@@ -273,7 +273,7 @@ const VideoManager: React.FC = () => {
           <input
             type="text"
             placeholder="Rechercher des vidéos..."
-            className="w-full sm:max-w-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full sm:max-w-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
