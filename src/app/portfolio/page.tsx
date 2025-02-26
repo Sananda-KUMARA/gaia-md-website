@@ -249,9 +249,9 @@ const Portfolio: NextPage = () => {
                   key={video.id}
                   variants={itemVariants}
                   whileHover="hover"
-                  className="bg-white rounded-lg shadow-lg overflow-hidden"
+                  className="bg-white rounded-lg shadow-lg overflow-hidden text-black"
                 >
-                  <div className="relative aspect-video">
+                  <div className="relative aspect-video" >
                     {video.isYouTube && video.youtubeId ? (
                       <div className="relative w-full h-full">
                         <iframe
@@ -269,7 +269,7 @@ const Portfolio: NextPage = () => {
                         controls
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                      <div className="w-full h-full flex items-center justify-center bg-gray-200 text-black">
                         {video.thumbnailUrl ? (
                           <img 
                             src={video.thumbnailUrl} 
@@ -277,15 +277,15 @@ const Portfolio: NextPage = () => {
                             className="w-full h-full object-cover" 
                           />
                         ) : (
-                          <p className="text-gray-500">Vidéo non disponible</p>
+                          <p className="text-gray-500 text-black">Vidéo non disponible</p>
                         )}
                       </div>
                     )}
                   </div>
                   
                   <div className="p-4">
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      <span className="inline-block px-2 py-1 text-xs font-semibold text-indigo-600 bg-indigo-100 rounded">
+                    <div className="flex flex-wrap gap-2 mb-2 text-black">
+                      <span className="inline-block px-2 py-1 text-xs font-semibold text-indigo-600 bg-indigo-100 rounded text-black">
                         {video.category}
                       </span>
                       {video.isYouTube && (
