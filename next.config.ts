@@ -3,11 +3,9 @@ import { withNextVideo } from 'next-video/process'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
- 
-   
- 
+
    images: {
-    domains: ['images.unsplash.com', 'tailwindui.com'],
+    domains: ['images.unsplash.com', 'tailwindui.com, via.placeholder.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,9 +14,28 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'tailwindui.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
       }
-    ],
+    ]
   },
+
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-src 'self' https://www.youtube.com;",
+          },
+        ],
+      },
+    ];
+  },
+
   env: {
     NEXT_VIDEO_PROVIDER: 'static',
     NEXT_PUBLIC_VIDEO_PROVIDER: 'static',

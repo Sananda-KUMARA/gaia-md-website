@@ -15,7 +15,7 @@
     "@next/third-parties": "^15.1.7",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.475.0",
-    "mongoose": "^8.10.1",
+    "mongoose": "^8.10.2",
     "next": "15.1.7",
     "next-auth": "^4.24.11",
     "next-video": "^2.1.0",

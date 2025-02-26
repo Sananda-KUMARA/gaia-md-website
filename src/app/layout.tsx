@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 
-import AuthProvider from './AuthProvider'
+import NextAuthSessionProvider from './AuthProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 const geistSans = Geist({
@@ -21,21 +21,18 @@ export const metadata: Metadata = {
   description: "Website Gaïa Motion Design",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ 
+  children 
+}: { 
+  children: React.ReactNode 
+}) {
   return (
     <html lang="fr">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
-      >
-          <AuthProvider>
+      <body>
+        <NextAuthSessionProvider>
           {children}
-        </AuthProvider>
-        {children}
+        </NextAuthSessionProvider>
       </body>
     </html>
-  );
+  )
 }

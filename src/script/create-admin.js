@@ -15,7 +15,7 @@ async function createAdminUser() {
     const users = database.collection('users');
 
     // Vérifier si l'admin existe déjà
-    const existingUser = await users.findOne({ email: 'admin@votredomaine.com' });
+    const existingUser = await users.findOne({ email: 'admin@admin.fr' });
     
     if (existingUser) {
       console.log('L\'utilisateur admin existe déjà');
