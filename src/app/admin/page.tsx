@@ -154,7 +154,7 @@ export default function AdminDashboard() {
                     </dt>
                     <dd>
                       <div className="text-lg font-medium text-gray-900">
-                        {stats.totalViews.toLocaleString()}
+                        {/* {stats.totalViews.toLocaleString()} */} À implémenter ...
                       </div>
                     </dd>
                   </dl>

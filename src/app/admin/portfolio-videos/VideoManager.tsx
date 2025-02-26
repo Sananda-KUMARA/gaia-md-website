@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Interface pour les données vidéo
 interface VideoData {
@@ -30,6 +31,55 @@ interface VideoForm {
   active: boolean;
 }
 
+// Fonction pour extraire l'ID YouTube d'une URL
+const extractYouTubeId = (url: string): string | null => {
+  if (!url) return null;
+  
+  // Patterns pour les différents formats d'URL YouTube
+  const patterns = [
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^/?]+)/i,
+    /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^/?]+)/i,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([^/?]+)/i
+  ];
+  
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+  
+  return null;
+};
+
+// Fonction pour générer l'URL de la miniature YouTube
+const getYouTubeThumbnailUrl = (videoId: string): string => {
+  return `https://img.youtube.com/vi/${videoId}/0.jpg`; // "0.jpg" est la miniature haute qualité
+};
+
+// Composant pour l'image avec état de chargement
+const ThumbnailImage = ({ src, alt }: { src: string, alt: string }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  
+  return (
+    <div className="w-20 h-12 relative">
+      {!imageLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <div className="w-4 h-4 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={`w-20 h-12 object-cover rounded ${imageLoaded ? 'block' : 'invisible'}`}
+        onLoad={() => setImageLoaded(true)}
+        onError={() => setImageLoaded(true)}
+      />
+    </div>
+  );
+};
+
 const VideoManager: React.FC = () => {
   const { data: session, status } = useSession();
   const [videos, setVideos] = useState<VideoData[]>([]);
@@ -47,6 +97,7 @@ const VideoManager: React.FC = () => {
   });
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isYouTubeVideo, setIsYouTubeVideo] = useState<boolean>(false);
 
   // Récupérer les vidéos
   const fetchVideos = async (): Promise<void> => {
@@ -77,10 +128,34 @@ const VideoManager: React.FC = () => {
     }
   }, [status]);
 
+  // Détecter si l'URL est YouTube et mettre à jour la miniature
+  useEffect(() => {
+    const youtubeId = extractYouTubeId(currentVideo.videoUrl);
+    const isYoutube = !!youtubeId;
+    
+    setIsYouTubeVideo(isYoutube);
+    
+    if (isYoutube) {
+      const thumbnailUrl = getYouTubeThumbnailUrl(youtubeId);
+      setCurrentVideo(prev => ({
+        ...prev,
+        thumbnailUrl: thumbnailUrl
+      }));
+    }
+  }, [currentVideo.videoUrl]);
+
   // Gérer les changements dans le formulaire
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setCurrentVideo(prev => ({ ...prev, [name]: value }));
+  };
+  
+  // Gérer spécifiquement le changement d'URL de miniature
+  const handleThumbnailUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Seulement si ce n'est pas une vidéo YouTube, sinon la miniature est automatique
+    if (!isYouTubeVideo) {
+      handleChange(e);
+    }
   };
 
   // Gérer le changement du switch active
@@ -115,6 +190,10 @@ const VideoManager: React.FC = () => {
       tags: video.tags ? video.tags.join(', ') : '',
       active: video.active
     });
+    
+    // Vérifier si c'est une vidéo YouTube
+    setIsYouTubeVideo(!!extractYouTubeId(video.videoUrl));
+    
     setIsEditing(true);
     setIsModalOpen(true);
   };
@@ -256,10 +335,9 @@ const VideoManager: React.FC = () => {
                     <tr key={video._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         {video.thumbnailUrl ? (
-                          <img 
+                          <ThumbnailImage 
                             src={video.thumbnailUrl} 
-                            alt={video.title}
-                            className="w-20 h-12 object-cover rounded"
+                            alt={video.title} 
                           />
                         ) : (
                           <div className="w-20 h-12 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500">
@@ -313,7 +391,7 @@ const VideoManager: React.FC = () => {
         
         {/* Modal pour ajouter/éditer une vidéo */}
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 text-black" >
             <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
               <div className="p-6 border-b">
                 <h3 className="text-xl font-semibold text-gray-900">
@@ -348,18 +426,34 @@ const VideoManager: React.FC = () => {
                     onChange={handleChange}
                     required
                   />
+                  {isYouTubeVideo && (
+                    <p className="text-sm text-green-600 mt-1">
+                      ✓ Vidéo YouTube détectée - miniature automatiquement récupérée
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="thumbnailUrl" className="block text-sm font-medium text-gray-700">
-                    URL de la miniature
+                  <label htmlFor="thumbnailUrl" className="flex items-center justify-between text-sm font-medium text-gray-700">
+                    <span>URL de la miniature {isYouTubeVideo && <span className="text-xs text-gray-500">(générée automatiquement)</span>}</span>
+                    {currentVideo.thumbnailUrl && (
+                      <button 
+                        type="button"
+                        className="text-xs text-blue-500 hover:text-blue-700"
+                        onClick={() => window.open(currentVideo.thumbnailUrl, '_blank')}
+                      >
+                        Aperçu
+                      </button>
+                    )}
                   </label>
                   <input
                     id="thumbnailUrl"
                     name="thumbnailUrl"
                     type="text"
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${isYouTubeVideo ? 'bg-gray-100' : ''}`}
                     value={currentVideo.thumbnailUrl}
-                    onChange={handleChange}
+                    onChange={handleThumbnailUrlChange}
+                    readOnly={isYouTubeVideo}
+                    disabled={isYouTubeVideo}
                   />
                 </div>
                 <div className="space-y-2">
