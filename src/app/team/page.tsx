@@ -1,7 +1,7 @@
 'use client'
 
-import Footer from '@/components/layoout/Footer'
-import Header from '@/components/layoout/Header'
+import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
 import type { NextPage } from 'next'
 
 const Team: NextPage = () => {

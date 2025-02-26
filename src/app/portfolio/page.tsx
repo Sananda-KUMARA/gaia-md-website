@@ -1,107 +1,117 @@
 'use client'
 
 import type { NextPage } from 'next'
-import { useState } from 'react'
-import Video from 'next-video';
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
-import { YouTubeEmbed } from '@next/third-parties/google';
-// Importation des vidéos
-import video1 from '../../../videos/video1.mp4';
-import video2 from '../../../videos/video2.mp4';
-import video3 from '../../../videos/video3.mp4';
-import video4 from '../../../videos/video4.mp4';
-import video5 from '../../../videos/video5.mp4';
-import Header from '@/components/layoout/Header';
-import Footer from '@/components/layoout/Footer';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
-type VideoProject = {
-  id: number;
+// Définition actualisée pour correspondre à votre API
+type Video = {
+  id: string;
   title: string;
   description: string;
-  video?: typeof video1 | string; // Vidéo locale (optionnelle pour YouTube)
-  youtubeId?: string; // ID YouTube (optionnel pour les vidéos locales)
+  video?: string; 
+  youtubeId?: string;
   category: string;
-  isYouTube?: boolean; // Propriété pour identifier les vidéos YouTube
+  isYouTube?: boolean;
+  thumbnailUrl?: string;
 }
 
-// Ajout des catégories aux projets vidéo avec un mélange de vidéos locales et YouTube
-const videoProjects: VideoProject[] = [
-  {
-    id: 1,
-    title: "Projet 1",
-    description: "Description du projet 1",
-    video: video1,
-    category: "Entreprise"
-  },
-  {
-    id: 2,
-    title: "Projet 2",
-    description: "Description du projet 2",
-    video: video2,
-    category: "Événement"
-  },
-  {
-    id: 3,
-    title: "Projet 3",
-    description: "Description du projet 3",
-    video: video3,
-    category: "Entreprise"
-  },
-  {
-    id: 4,
-    title: "Projet 4",
-    description: "Description du projet 4",
-    video: video4,
-    category: "Produit"
-  },
-  {
-    id: 5,
-    title: "Projet 5",
-    description: "Description du projet 5",
-    video: video5,
-    category: "Événement"
-  },
-  // Vidéos YouTube
-  {
-    id: 6,
-    title: "Vidéo YouTube 1",
-    description: "Description de la vidéo YouTube 1",
-    video: "", // Valeur vide pour respecter le type
-    youtubeId: "dQw4w9WgXcQ", // Exemple d'ID YouTube
-    category: "YouTube",
-    isYouTube: true
-  },
-  {
-    id: 7,
-    title: "Vidéo YouTube 2",
-    description: "Description de la vidéo YouTube 2",
-    video: "", // Valeur vide pour respecter le type
-    youtubeId: "9bZkp7q19f0", // Exemple d'ID YouTube
-    category: "YouTube",
-    isYouTube: true
-  },
-  {
-    id: 8,
-    title: "Vidéo YouTube 3",
-    description: "Tutoriel vidéo",
-    video: "", // Valeur vide pour respecter le type
-    youtubeId: "jNQXAC9IVRw", // Exemple d'ID YouTube
-    category: "Tutoriel",
-    isYouTube: true
-  }
-];
-
 const Portfolio: NextPage = () => {
-  // État pour stocker la catégorie sélectionnée
+  // État pour stocker tous les projets et la catégorie sélectionnée
+  const [videoProjects, setVideoProjects] = useState<Video[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  // Récupérer les projets depuis MongoDB
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/videos');
+        
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des vidéos ...');
+        }
+        
+        const data = await response.json();
+        console.log('Données reçues de l\'API:', data);
+        
+        // Transformer les données pour les rendre compatibles avec notre interface Video
+        const transformVideoData = (apiData: any): Video[] => {
+          // Vérifier si l'API a un tableau 'data' ou si c'est directement un tableau
+          const videos = apiData.data || apiData;
+          
+          if (!Array.isArray(videos)) {
+            console.error("Impossible de trouver un tableau de vidéos dans la réponse", apiData);
+            return [];
+          }
+          
+          return videos.map(item => {
+            // Extraire l'ID YouTube de l'URL si disponible
+            let youtubeId = null;
+            let isYouTube = false;
+            
+            if (item.videoUrl) {
+              // Extraire l'ID YouTube de différents formats d'URL possibles
+              const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+              const match = item.videoUrl.match(youtubeRegex);
+              
+              if (match && match[1]) {
+                youtubeId = match[1];
+                isYouTube = true;
+              }
+            }
+            
+            // Créer un objet compatible avec notre interface Video
+            return {
+              id: item._id || String(Math.random()),
+              title: item.title || "Sans titre",
+              description: item.description || "",
+              video: !isYouTube ? item.videoUrl : undefined,
+              youtubeId: youtubeId,
+              category: item.category || "Non classé",
+              isYouTube: isYouTube,
+              thumbnailUrl: item.thumbnailUrl
+            };
+          });
+        };
+        
+        const transformedVideos = transformVideoData(data);
+        
+        if (transformedVideos.length > 0) {
+          setVideoProjects(transformedVideos);
+          setError(null);
+        } else {
+          console.warn('Aucune vidéo trouvée dans la réponse:', data);
+          setVideoProjects([]);
+          setError('Aucune vidéo trouvée');
+        }
+        
+        setIsLoading(false);
+      } catch (err) {
+        console.error('Erreur lors de la récupération des vidéos:', err);
+        setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
   
   // Extraire toutes les catégories uniques
-  const categories = Array.from(new Set(videoProjects.map(project => project.category)));
+  const categories = Array.isArray(videoProjects) 
+    ? Array.from(new Set(videoProjects.map(video => video.category))) 
+    : [];
   
   // Filtrer les projets selon la catégorie sélectionnée
-  const filteredProjects = selectedCategory 
-    ? videoProjects.filter(project => project.category === selectedCategory) 
-    : videoProjects;
+  const filteredVideos = Array.isArray(videoProjects) 
+    ? (selectedCategory 
+        ? videoProjects.filter(video => video.category === selectedCategory) 
+        : videoProjects)
+    : [];
 
   // Variants pour les animations
   const containerVariants = {
@@ -160,12 +170,29 @@ const Portfolio: NextPage = () => {
     }
   };
 
+  // Gestion des états de chargement et d'erreur
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen text-red-500">
+        <p>{error}</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="bg-white">
         <Header />
         <div className="container mx-auto px-4 py-8 mt-24">
-          <h1 className="text-3xl font-bold text-center mb-8">Notre Portfolio</h1>
+          <h1 className="text-3xl font-bold text-center mb-8 text-black">Notre Portfolio</h1>
           
           {/* Barre de filtres par catégorie avec animation */}
           <motion.div 
@@ -216,45 +243,59 @@ const Portfolio: NextPage = () => {
             exit="exit"
           >
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
+              {filteredVideos.map((video) => (
                 <motion.div
                   layout
-                  key={project.id}
+                  key={video.id}
                   variants={itemVariants}
                   whileHover="hover"
                   className="bg-white rounded-lg shadow-lg overflow-hidden"
                 >
                   <div className="relative aspect-video">
-                    {project.isYouTube ? (
-                      // Utilisation de YouTubeEmbed pour les vidéos YouTube
-                      <YouTubeEmbed 
-                        videoid={project.youtubeId || ""}
-                        height={225}
-                        params="controls=1&rel=0"
+                    {video.isYouTube && video.youtubeId ? (
+                      <div className="relative w-full h-full">
+                        <iframe
+                          src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&controls=1`}
+                          title={video.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="absolute top-0 left-0 w-full h-full"
+                        ></iframe>
+                      </div>
+                    ) : video.video ? (
+                      <video 
+                        src={video.video} 
+                        className="w-full h-full object-cover"
+                        controls
                       />
                     ) : (
-                      // Vidéos locales avec next-video
-                      <Video
-                        src={project.video}
-                        controls
-                        className="w-full h-full object-cover"
-                      />
+                      <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                        {video.thumbnailUrl ? (
+                          <img 
+                            src={video.thumbnailUrl} 
+                            alt={video.title}
+                            className="w-full h-full object-cover" 
+                          />
+                        ) : (
+                          <p className="text-gray-500">Vidéo non disponible</p>
+                        )}
+                      </div>
                     )}
                   </div>
                   
                   <div className="p-4">
                     <div className="flex flex-wrap gap-2 mb-2">
                       <span className="inline-block px-2 py-1 text-xs font-semibold text-indigo-600 bg-indigo-100 rounded">
-                        {project.category}
+                        {video.category}
                       </span>
-                      {project.isYouTube && (
+                      {video.isYouTube && (
                         <span className="inline-block px-2 py-1 text-xs font-semibold text-red-600 bg-red-100 rounded">
                           YouTube
                         </span>
                       )}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-gray-600">{project.description}</p>
+                    <h3 className="text-xl font-semibold mb-2">{video.title}</h3>
+                    <p className="text-gray-600">{video.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -262,7 +303,7 @@ const Portfolio: NextPage = () => {
           </motion.div>
           
           {/* Message si aucun projet ne correspond au filtre */}
-          {filteredProjects.length === 0 && (
+          {filteredVideos.length === 0 && (
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
