@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import VideoGrid from '../../components/VideoGrid';
-import CategoryFilter from '../../components/CategoryFilter';
+import VideoGrid from '../../../../components/admin/VideoGrid';
+import CategoryFilter from '../../../../components/admin/CategoryFilter';
 import styles from '../../styles/Home.module.css';
 
 const CategoryPage: React.FC = () => {

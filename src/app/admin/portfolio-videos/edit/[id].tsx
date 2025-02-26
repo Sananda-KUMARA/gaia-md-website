@@ -36,7 +36,7 @@ const EditVideo: React.FC = () => {
   // Rediriger vers la page de connexion si non authentifié
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/admin/login');
+      router.push('/login');
     } else if (status === 'authenticated' && id && typeof id === 'string') {
       fetchVideo(id);
     }
