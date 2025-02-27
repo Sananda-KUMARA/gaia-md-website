@@ -17,7 +17,7 @@ export default function Home() {
 
         <HeroSection />
 
-        <LogoCloud />
+        {/* <LogoCloud />   LOGO des partenaires commerciaux et clients qui nous ont fait confiance ...*/}
 
         <TeamSection />
 

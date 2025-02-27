@@ -2,16 +2,15 @@
 
 const team = [
     {
-      name: 'Florent LEFEVRE',
-      role: 'Co-Founder / Digital Creator & Ingénieur I.T.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      name: 'Ghilas MADOURI',
+      imageUrl:  '/photos/ghilas_profile2.jpg',
+      role: 'Co-Fondateur / Motion Designer & Monteur Vidéo',
     },
     {
-      name: 'Ghilas MADOURI',
-      role: 'Co-Founder / Motion Designer & Graphiste',
+      name: 'Florent LEFEVRE',
+      role: 'Co-Fondateur / Créateur numérique &Ingénieur informaticien',
       imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+        '/photos/florent_profile.jpg',
     }
   ]
 
@@ -20,7 +19,7 @@ export default function BlogSection() {
 
 <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">Notre équipe</h2>
+            <h2 className="text-4xl font-semibold tracking-tight text-pretty text-blue-600 sm:text-5xl">Notre équipe</h2>
             <p className="mt-6 text-lg/8 text-gray-600">
              Nous sommes deux passionnés dans le domaine du motion design. Nous avons décidé de nous lancer dans l&lsquo;aventure de l&lsquo;entrepreneuriat pour partager notre passion avec le monde entier.
             </p>
@@ -32,7 +31,7 @@ export default function BlogSection() {
             {team.map((person) => (
               <li key={person.name}>
                 <img alt="" src={person.imageUrl} className="mx-auto size-24 rounded-full" />
-                <h3 className="mt-6 text-base/7 font-semibold tracking-tight text-gray-900">{person.name}</h3>
+                <h3 className="mt-6 text-base/7 font-semibold tracking-tight text-blue-600">{person.name}</h3>
                 <p className="text-sm/6 text-gray-600">{person.role}</p>
               </li>
             ))}
