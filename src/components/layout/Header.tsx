@@ -27,9 +27,9 @@ export default function Header() {
             <span className="sr-only">Your Company</span>
             <Image
               alt="Logo Gaia Motion Design"
-              src="/logos/logo_HD_clean_transparent.png"
-              width={56}
-              height={56}
+              src="/logos/logo.gif"
+              width={80}
+              height={80}
               className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
               priority
             />
