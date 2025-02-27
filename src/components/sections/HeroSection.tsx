@@ -2,7 +2,7 @@
 import Image from 'next/image';
 
 const stats = [
-  { label: 'Une passion sans limite à part celle de notre imagination créative', value: 'Montages pro effectués sur Adobe Première, After Effects, Da Vinci Resolve, ...' },
+  { label: 'Une passion sans limite à part celle de notre imagination créative', value: 'Maîtrise des logiciels Première Pro, After Effects, Da Vinci Resolve, Ciné 4D ...' },
   { label: 'Déposez votre avis sur notre site ...', value: 'Nouveaux clients quotidien' },
 ]
 
@@ -92,7 +92,7 @@ export default function HeroSection() {
                 Nous créons pour vous des vidéos façonnées avec Amour ...
               </h1>
               <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
-                De la simple vidéo événementielle comme un mariage ou annivcersaire, à la vidéo corporate pour votre entreprise, nous sommes là pour vous accompagner dans vos projets.
+                De la vidéo événementielle comme un mariage ou anniversaire, à la vidéo corporate pour votre entreprise, nous sommes là pour vous accompagner dans vos projets.
               </p>
             </div>
             
