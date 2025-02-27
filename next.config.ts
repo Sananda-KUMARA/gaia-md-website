@@ -8,7 +8,6 @@ const nextConfig = {
     MONGODB_URI: process.env.MONGODB_URI,
   },
   images: {
-    domains: ['images.unsplash.com', 'tailwindui.com', 'via.placeholder.com'],
     remotePatterns: [
       {
         protocol: 'https',

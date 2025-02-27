@@ -18,6 +18,9 @@ type Video = {
   thumbnailUrl?: string;
 }
 
+
+
+
 const Portfolio: NextPage = () => {
   // État pour stocker tous les projets et la catégorie sélectionnée
   const [videoProjects, setVideoProjects] = useState<Video[]>([]);
@@ -189,7 +192,10 @@ const Portfolio: NextPage = () => {
 
   return (
     <>
-      <div className="bg-white">
+
+
+      <div className="bg-[url('/photos/background_portfolio.png')] bg-cover bg-center bg-no-repeat min-h-screen bg-opacity-10">
+       
         <Header />
         <div className="container mx-auto px-4 py-8 mt-24">
           <h1 className="text-3xl font-bold text-center mb-8 text-black">Notre Portfolio</h1>

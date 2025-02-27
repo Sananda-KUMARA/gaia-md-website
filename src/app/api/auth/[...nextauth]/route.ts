@@ -15,11 +15,11 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials) return null;
-        
+       
         await dbConnect();
         // Rechercher l'utilisateur dans la base de données
         const user = await UserModel.findOne({ email: credentials.email });
-        
+       
         if (!user) {
           throw new Error('Aucun utilisateur trouvé avec cet email');
         }
@@ -62,10 +62,15 @@ export const authOptions = {
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // S'assurer que toutes les redirections restent sur votre domaine
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
   },
   pages: {
-    signIn: '/login', // Assurez-vous que ce chemin correspond à votre structure
-    error: '/login', // Utilisez le même chemin pour l'erreur pour simplifier
+    signIn: '/login',
+    error: '/login',
+    signOut: '/logout',
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
@@ -74,5 +79,4 @@ export const authOptions = {
 const handler = NextAuth(authOptions);
 
 // Exporter les méthodes HTTP nécessaires
-export const GET = handler;
-export const POST = handler;
+export { handler as GET, handler as POST };
