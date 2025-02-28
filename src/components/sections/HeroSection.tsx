@@ -194,7 +194,7 @@ export default function HeroSection() {
       <div className="mt-10 sm:mt-10 xl:mx-auto xl:max-w-[640px]">
           <Image
             alt="Réglages colorimétrie dans logiciel montage"
-            src="/photos/color-grading-graph-or-rgb-colour-correction-indic-2023-11-27-05-30-48-utc.png"
+            src="/photos/color-grading-graph-or-rgb-colour-correction-indic-2023-11-27-05-30-48-utc.jpg"
             width={2832}
             height={1133}
             className="aspect-5/2 w-full object-cover xl:rounded-3xl"
