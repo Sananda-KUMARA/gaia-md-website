@@ -10,15 +10,15 @@ const Carousel = () => {
 
   // Images d'exemple (remplacez par vos propres images)
   const images = [
-    { id: 1, src: "/photos/african-video-editor-working-with-footage-and-soun-2025-02-20-07-16-08-utc.jpg", alt: "Image 1", caption: "" },
-    { id: 2, src: "/photos/artist-pointing-at-musical-sheet-notation-to-expla-2025-02-20-00-23-57-utc.jpg", alt: "Image 2", caption: "" },
-    { id: 3, src: "/photos/behind-the-scenes-2023-11-27-05-37-23-utc.jpg", alt: "Image 3", caption: "" },
-    { id: 4, src: "/photos/camera-at-a-live-media-conference-2024-10-18-14-07-51-utc.jpg", alt: "Image 3", caption: "" },
-    { id: 5, src: "/photos/colorist-examining-script-at-office-2023-11-27-05-28-16-utc.jpg", alt: "Image 5", caption: "" },
-    { id: 6, src: "/photos/man-using-computer-with-photo-editing-software-2023-11-27-05-01-30-utc.png", alt: "Image 6", caption: "" },
-    { id: 7, src: "/photos/two-photographers-working-on-the-computers-in-the-2023-11-27-04-58-01-utc.jpg", alt: "Image 7", caption: "" },
-    { id: 8, src: "/photos/young-musician-or-producer-showing-african-man-gro-2023-11-27-05-29-14-utc.png", alt: "Image 8", caption: "" },
-    { id: 9, src: "/photos/photo-studio-with-lighting-equipment-and-fan-2024-11-17-15-41-34-utc.jpg", alt: "Image 9", caption: "" },
+    { id: 1, src: "/photos/slider_home/african-video-editor-working-with-footage-and-soun-2025-02-20-07-16-08-utc.jpg", alt: "Image 1", caption: "" },
+    { id: 2, src: "/photos/slider_home/artist-pointing-at-musical-sheet-notation-to-expla-2025-02-20-00-23-57-utc.jpg", alt: "Image 2", caption: "" },
+    { id: 3, src: "/photos/slider_home/behind-the-scenes-2023-11-27-05-37-23-utc.jpg", alt: "Image 3", caption: "" },
+    { id: 4, src: "/photos/slider_home/camera-at-a-live-media-conference-2024-10-18-14-07-51-utc.jpg", alt: "Image 3", caption: "" },
+    { id: 5, src: "/photos/slider_home/cameras-at-a-live-media-conference-2024-10-18-09-26-58-utc.jpg", alt: "Image 5", caption: "" },
+    { id: 6, src: "/photos/slider_home/colorist-examining-script-at-office-2023-11-27-05-28-16-utc.jpg", alt: "Image 6", caption: "" },
+    { id: 7, src: "/photos/slider_home/photo-studio-with-lighting-equipment-and-fan-2024-11-17-15-41-34-utc.jpg", alt: "Image 7", caption: "" },
+    { id: 8, src: "/photos/slider_home/two-photographers-working-on-the-computers-in-the-2023-11-27-04-58-01-utc.jpg", alt: "Image 8", caption: "" },
+    { id: 9, src: "/photos/slider_home/young-musician-or-producer-showing-african-man-gro-2023-11-27-05-29-14-utc.jpg", alt: "Image 9", caption: "" },
   ];
 
  // Note: Pour que Next.js optimise les images externes, ajoutez-les à next.config.js:
@@ -136,7 +136,7 @@ const Carousel = () => {
           - mx-auto: centré horizontalement
           - overflow-hidden: masque tout ce qui dépasse */}
       
-      <div className="relative h-80 md:h-128 lg:h-160 xl:h-192 2xl:h-screen overflow-hidden">
+      <div className="relative h-80 md:h-128 lg:h-150 xl:h-182 2xl:h-screen overflow-hidden">
       {/* Conteneur des slides
             - relative: pour le positionnement des images
             - h-64: hauteur de 16rem sur mobile
