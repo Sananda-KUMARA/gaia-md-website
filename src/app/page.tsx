@@ -15,7 +15,7 @@ export default function Home() {
         <HeroSection />
         {/* <LogoCloud />   LOGO des partenaires commerciaux et clients qui nous ont fait confiance ...*/}
         <TeamSection />
-        <BlogSection />
+        {/* <BlogSection /> */}
         <Footer />
       </div>
     </div>

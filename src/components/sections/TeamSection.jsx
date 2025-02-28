@@ -1,5 +1,7 @@
 'use client'
 
+import Carousel from "../ui/Caroussel"
+
 const team = [
     {
       name: 'Ghilas MADOURI',
@@ -14,8 +16,11 @@ const team = [
     }
   ]
 
-export default function BlogSection() {
+export default function TeamSection() {
     return (
+<>
+
+<Carousel />
 
 <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
@@ -37,5 +42,6 @@ export default function BlogSection() {
             ))}
           </ul>
         </div>
+        </>
   )
 }
