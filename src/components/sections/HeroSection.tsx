@@ -2,8 +2,8 @@
 import Image from 'next/image';
 
 const stats = [
-  { label: 'Une passion sans limite à part celle de notre imagination créative', value: 'Maîtrise des logiciels Première Pro, After Effects, Da Vinci Resolve, Ciné 4D ...' },
-  { label: 'Déposez votre avis sur notre site ...', value: 'Nouveaux clients quotidien' },
+  { label: 'Une passion sans limite à part celle de notre imagination créative', value: 'Première Pro, After Effects, Da Vinci Resolve, Ciné 4D ...' },
+  { label: 'Déposez votre avis sur notre site ...', value: 'Expertise dans tous ces outils logiciels' },
 ]
 
 const values = [
@@ -102,7 +102,7 @@ export default function HeroSection() {
                 <div className="relative">
                   <Image
                     alt="Image de production vidéo"
-                    src="/photos/man-using-computer-with-photo-editing-software-2023-11-27-05-01-30-utc.png"
+                    src="/photos/slider_home/behind-the-scenes-2023-11-27-05-37-23-utc.jpg"
                     width={176}
                     height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -115,7 +115,7 @@ export default function HeroSection() {
                 <div className="relative">
                   <Image
                     alt="Image de production créative"
-                    src="/photos/photo-studio-with-lighting-equipment-and-fan-2024-11-17-15-41-34-utc.png"
+                    src="/photos/slider_home/two-photographers-working-on-the-computers-in-the-2023-11-27-04-58-01-utc.jpg"
                     width={176}
                     height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -125,7 +125,7 @@ export default function HeroSection() {
                 <div className="relative">
                   <Image
                     alt="Image d'équipe créative"
-                    src="/photos/camera-on-film-set-behind-the-scenes-2023-11-27-05-35-53-utc.png"
+                    src="/photos/slider_home/camera-at-a-live-media-conference-2024-10-18-14-07-51-utc.jpg"
                     width={176}
                     height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -138,7 +138,7 @@ export default function HeroSection() {
                 <div className="relative">
                   <Image
                     alt="Image de matériel vidéo"
-                    src="/photos/cinematography-2023-11-27-04-58-01-utc.png"
+                    src="/photos/slider_home/cameras-at-a-live-media-conference-2024-10-18-09-26-58-utc.jpg"
                     width={176}
                     height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -148,7 +148,7 @@ export default function HeroSection() {
                 <div className="relative">
                   <Image
                     alt="Image de production"
-                    src="/photos/young-musician-or-producer-showing-african-man-gro-2023-11-27-05-29-14-utc.png"
+                    src="/photos/slider_home/colorist-examining-script-at-office-2023-11-27-05-28-16-utc.jpg"
                     width={176}
                     height={264}
                     className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
