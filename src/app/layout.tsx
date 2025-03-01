@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from 'next/font/google'
+import AudioProvider from '../components/ui/AudioProvider';
 import "./globals.css";
 
 import NextAuthSessionProvider from './AuthProvider'
@@ -42,9 +43,12 @@ export default function RootLayout({
     <html lang="fr">
       <body>
         <NextAuthSessionProvider>
-          {children}
+          <AudioProvider>
+             {children}
+        </AudioProvider>
         </NextAuthSessionProvider>
       </body>
     </html>
   )
 }
+
