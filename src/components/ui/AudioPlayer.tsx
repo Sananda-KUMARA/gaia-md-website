@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 // Variables globales pour conserver l'état entre les navigations de pages
-// Note: ces variables sont partagées entre toutes les instances du composant
 let globalAudio: HTMLAudioElement | null = null;
 let wasPlaying = false;
 let globalVolume = 0.7;
@@ -77,7 +76,8 @@ function resumePlaybackIfNeeded() {
   }
 }
 
-const AudioPlayer: React.FC = () => {
+// Composant qui utilise useSearchParams et qui sera enveloppé dans Suspense
+function AudioPlayerContent() {
   // États locaux pour l'interface utilisateur
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -85,8 +85,7 @@ const AudioPlayer: React.FC = () => {
   const [volume, setVolume] = useState(globalVolume);
   const [isMuted, setIsMuted] = useState(globalIsMuted);
   const [showPlayer, setShowPlayer] = useState(false);
-  // Initialiser showPrompt à false par défaut pour éviter le flash
-const [showPrompt, setShowPrompt] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
   const [trackInfo, setTrackInfo] = useState({
     title: "Rockking around here",
     artist: "Alex Grohl",
@@ -402,6 +401,15 @@ const [showPrompt, setShowPrompt] = useState(false);
         </div>
       )}
     </>
+  );
+}
+
+// Composant principal enveloppé dans Suspense
+const AudioPlayer: React.FC = () => {
+  return (
+    <Suspense fallback={<div className="fixed bottom-6 left-6 bg-slate-800 text-white rounded-lg p-3 shadow-md">Chargement du lecteur...</div>}>
+      <AudioPlayerContent />
+    </Suspense>
   );
 };
 
