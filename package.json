@@ -13,15 +13,22 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@next/third-parties": "^15.1.7",
+    "@portabletext/react": "^3.2.1",
+    "@sanity/client": "^6.28.2",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.77.2",
     "framer-motion": "^12.4.7",
     "http-proxy-middleware": "^3.0.3",
     "lucide-react": "^0.475.0",
     "mongoose": "^8.10.2",
     "next": "15.1.7",
     "next-auth": "^4.24.11",
+    "next-sanity": "^9.8.60",
     "next-video": "^2.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "sanity": "^3.77.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

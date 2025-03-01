@@ -3,10 +3,13 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
   reactStrictMode: true,
+  
   env: {
     MONGODB_URI: process.env.MONGODB_URI,
   },
+
   images: {
     remotePatterns: [
       {
@@ -21,8 +24,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'via.placeholder.com',
       },
+       {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '**',
+      },
     ],
   },
+
   async headers() {
     return [
       {
@@ -36,24 +45,28 @@ const nextConfig = {
       },
     ];
   },
+
   serverRuntimeConfig: {
     port: 3000, // ou un autre port de votre choix
   },
-    async rewrites() {
-        return [
-          {
-            source: '/robot.txt',
-            destination: '/api/robot',
-          },
-        ];
+
+  async rewrites() {
+      return [
+        {
+          source: '/robot.txt',
+          destination: '/api/robot',
+        },
+      ];
+    },
+
+    eslint: {
+        ignoreDuringBuilds: true,
       },
-      eslint: {
-          ignoreDuringBuilds: true,
-        },
-        typescript: {
-          // Désactive la vérification TypeScript pendant le build
-          ignoreBuildErrors: true,
-        },
+
+    typescript: {
+      // Désactive la vérification TypeScript pendant le build
+      ignoreBuildErrors: true,
+    },
 
 };
 
