@@ -1,10 +1,5 @@
-import { MetadataRoute } from 'next'
-
-export default function robots(): MetadataRoute.Robots {
-  // Utilisez la même variable d'environnement que pour le sitemap
-  const baseUrl = process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_DOMAIN || 'https://gaia.movie'
-    : 'http://localhost:3000';
+export default function robots() {
+  const baseUrl = 'https://gaia.movie';
 
   return {
     rules: [
