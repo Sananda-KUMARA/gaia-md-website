@@ -75,20 +75,40 @@ export default function BlogPage() {
   // État pour la catégorie sélectionnée
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // Filtrer les articles par catégorie
+  // État pour la recherche par titre
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Filtrer les articles par catégorie et titre
   const filteredPosts = useMemo(() => {
-    return selectedCategory 
-      ? posts.filter(post => 
-          post.categories?.some(cat => cat.title === selectedCategory)
-        )
-      : posts;
-  }, [posts, selectedCategory]);
+    return posts.filter(post => {
+      // Filtrage par catégorie
+      const categoryMatch = selectedCategory 
+        ? post.categories?.some(cat => cat.title === selectedCategory)
+        : true;
+
+      // Filtrage par titre (insensible à la casse)
+      const titleMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
+
+      return categoryMatch && titleMatch;
+    });
+  }, [posts, selectedCategory, searchQuery]);
 
   return (
     <>
     <Header />
-    <div className="container mx-auto mt-20  px-4 py-8">
+    <div className="container mx-auto mt-20 px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Notre Blog</h1>
+
+      {/* Champ de recherche */}
+      <div className="flex justify-center mb-8">
+        <input 
+          type="text" 
+          placeholder="Rechercher un article..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
 
       {/* Filtres de catégories */}
       <div className="flex justify-center mb-12">
@@ -127,6 +147,7 @@ export default function BlogPage() {
         <p>
           {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''} 
           {selectedCategory ? ` dans la catégorie "${selectedCategory}"` : ''}
+          {searchQuery ? ` correspondant à "${searchQuery}"` : ''}
         </p>
       </div>
 
@@ -227,13 +248,18 @@ export default function BlogPage() {
         // Message si aucun article ne correspond au filtre
         <div className="bg-gray-100 rounded-lg p-8 text-center">
           <p className="text-lg text-gray-600 mb-4">
-            Aucun article trouvé dans la catégorie "{selectedCategory}".
+            Aucun article trouvé 
+            {selectedCategory ? ` dans la catégorie "${selectedCategory}"` : ''}
+            {searchQuery ? ` correspondant à "${searchQuery}"` : ''}
           </p>
           <button
-            onClick={() => setSelectedCategory(null)}
+            onClick={() => {
+              setSelectedCategory(null);
+              setSearchQuery('');
+            }}
             className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
           >
-            Voir tous les articles
+            Réinitialiser les filtres
           </button>
         </div>
       )}

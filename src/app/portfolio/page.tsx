@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { Search } from 'lucide-react'; // Import de l'icône de recherche
 
 // Définition actualisée pour correspondre à votre API
 type Video = {
@@ -18,13 +19,11 @@ type Video = {
   thumbnailUrl?: string;
 }
 
-
-
-
 const Portfolio: NextPage = () => {
   // État pour stocker tous les projets et la catégorie sélectionnée
   const [videoProjects, setVideoProjects] = useState<Video[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>(''); // Nouvel état pour la recherche par titre
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   
@@ -109,12 +108,32 @@ const Portfolio: NextPage = () => {
     ? Array.from(new Set(videoProjects.map(video => video.category))) 
     : [];
   
-  // Filtrer les projets selon la catégorie sélectionnée
+  // Filtrer les projets selon la catégorie sélectionnée ET la recherche par titre
   const filteredVideos = Array.isArray(videoProjects) 
-    ? (selectedCategory 
-        ? videoProjects.filter(video => video.category === selectedCategory) 
-        : videoProjects)
+    ? videoProjects.filter(video => {
+        // Filtre par catégorie
+        const categoryMatch = selectedCategory ? video.category === selectedCategory : true;
+        
+        // Filtre par titre (recherche insensible à la casse)
+        const titleMatch = searchQuery 
+          ? video.title.toLowerCase().includes(searchQuery.toLowerCase())
+          : true;
+        
+        // Retourner seulement les vidéos qui correspondent aux deux filtres
+        return categoryMatch && titleMatch;
+      })
     : [];
+
+  // Gérer la recherche
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Réinitialiser tous les filtres
+  const resetFilters = () => {
+    setSelectedCategory(null);
+    setSearchQuery('');
+  };
 
   // Variants pour les animations
   const containerVariants = {
@@ -192,53 +211,97 @@ const Portfolio: NextPage = () => {
 
   return (
     <>
-
-
       <div className="bg-[url('/photos/background_portfolio.png')] bg-cover bg-center bg-no-repeat min-h-screen bg-opacity-10">
-       
         <Header />
         <div className="container mx-auto px-4 py-8 mt-24">
-          <h1 className="text-3xl font-bold text-center mb-8 text-black">Notre Portfolio</h1>
+          <h1 className="text-3xl font-bold text-center mb-8 text-black">Notre Portfolio </h1>
+            {/* Affichage des résultats du filtre */}
+          {filteredVideos.length > 0 ? (
+            <p className="text-center mb-6 text-gray-900">
+              {filteredVideos.length} vidéo{filteredVideos.length > 1 ? 's' : ''} trouvée{filteredVideos.length > 1 ? 's' : ''}
+              {searchQuery && <span> contenant "<strong>{searchQuery}</strong>"</span>}
+              {selectedCategory && <span> dans la catégorie <strong>{selectedCategory}</strong></span>}
+            </p>
+          ) : null}
           
-          {/* Barre de filtres par catégorie avec animation */}
-          <motion.div 
-            className="flex flex-wrap justify-center mb-8 gap-2"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.5,
-              ease: "easeOut"
-            }}
-          >
-            <motion.button 
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 
-                ${selectedCategory === null 
-                  ? 'bg-indigo-600 text-white' 
-                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
-              onClick={() => setSelectedCategory(null)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          {/* Barre de filtres et recherche */}
+          <div className="mb-8">
+          
+            {/* Barre de recherche */}
+            <motion.div 
+              className="flex justify-center mb-4"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeOut"
+              }}
             >
-              Tous
-            </motion.button>
+              <div className="relative w-full max-w-lg">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search size={18} className="text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Rechercher par titre..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                />
+                {(searchQuery || selectedCategory) && (
+                  <button
+                    onClick={resetFilters}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+            </motion.div>
             
-            {categories.map((category) => (
+            {/* Boutons de filtres par catégorie */}
+            <motion.div 
+              className="flex flex-wrap justify-center gap-2"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeOut",
+                delay: 0.1
+              }}
+            >
               <motion.button 
-                key={category}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
-                  ${selectedCategory === category 
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 
+                  ${selectedCategory === null 
                     ? 'bg-indigo-600 text-white' 
                     : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => setSelectedCategory(null)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {category}
+                Tous
               </motion.button>
-            ))}
-          </motion.div>
+              
+              {categories.map((category) => (
+                <motion.button 
+                  key={category}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
+                    ${selectedCategory === category 
+                      ? 'bg-indigo-600 text-white' 
+                      : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                  onClick={() => setSelectedCategory(category)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  {category}
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
+          
+          
           
           {/* Affichage des vidéos filtrées avec animation */}
           <motion.div 
@@ -308,7 +371,7 @@ const Portfolio: NextPage = () => {
             </AnimatePresence>
           </motion.div>
           
-          {/* Message si aucun projet ne correspond au filtre */}
+          {/* Message si aucun projet ne correspond aux filtres */}
           {filteredVideos.length === 0 && (
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
@@ -316,7 +379,17 @@ const Portfolio: NextPage = () => {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="text-center py-12 col-span-full"
             >
-              <p className="text-gray-500 text-lg">Aucun projet ne correspond à cette catégorie.</p>
+              <p className="text-gray-500 text-lg">
+                Aucun projet ne correspond à vos critères de recherche.
+                {searchQuery && <span> Essayez de modifier votre recherche "<strong>{searchQuery}</strong>".</span>}
+                {selectedCategory && <span> Essayez une autre catégorie que "<strong>{selectedCategory}</strong>".</span>}
+              </p>
+              <button
+                onClick={resetFilters}
+                className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+              >
+                Réinitialiser les filtres
+              </button>
             </motion.div>
           )}
         </div>
