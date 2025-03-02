@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = process.env.NODE_ENV === 'production' 
-    ? 'https://gaia-md.video' 
+    ? process.env.NEXT_PUBLIC_DOMAIN
     : 'https://localhost:3000';
 
   return {
