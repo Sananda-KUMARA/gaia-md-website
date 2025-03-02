@@ -1,11 +1,18 @@
 // app/sitemap.ts
 import { MetadataRoute } from 'next'
+import { createClient } from 'next-sanity'; // Assurez-vous que next-sanity est installé
 
-export const dynamic = 'force-dynamic';  // Force un rendu côté serveur à chaque requête
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Utilisez le nouveau domaine
-  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN || 'https://gaia.movie';
+  // Détection de l'environnement
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const baseUrl = isDevelopment 
+    ? 'http://localhost:3000'
+    : (process.env.NEXT_PUBLIC_DOMAIN || 'https://gaia.movie');
+  
+  console.log('Environnement:', process.env.NODE_ENV);
+  console.log('Base URL utilisée pour le sitemap:', baseUrl);
   
   // Pages statiques
   const staticPages = [
@@ -22,38 +29,56 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }));
   
-  // Pages dynamiques
-  let dynamicPages: Array<{
-    url: string;
-    lastModified: string;
-    changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-    priority: number;
-  }> = [];
-  
-  // Cette partie s'exécutera à la demande (au moment où quelqu'un accède au sitemap)
-  // et non pendant le build, ce qui évite l'erreur
+  // Récupération des vidéos
+  let videoPages: MetadataRoute.Sitemap = [];
   try {
-    // Utilisez le domaine de base pour l'appel API
-    const response = await fetch(`${baseUrl}/api/videos`, { 
-      next: { revalidate: 3600 } // Revalider les données chaque heure
+    const videoResponse = await fetch(`${baseUrl}/api/videos`, { 
+      next: { revalidate: 3600 }
     });
     
-    if (response.ok) {
-      const videos = await response.json();
+    if (videoResponse.ok) {
+      const videos = await videoResponse.json();
       
       if (videos.data && Array.isArray(videos.data)) {
-        dynamicPages = videos.data.map(video => ({
+        videoPages = videos.data.map(video => ({
           url: `${baseUrl}/videos/${video._id}`,
           lastModified: new Date(video.updatedAt || video.createdAt).toISOString(),
-          changeFrequency: 'daily' as const,
+          changeFrequency: 'weekly' as const,
           priority: 0.7,
         }));
       }
     }
   } catch (error) {
-    console.error('Erreur lors de la récupération des données pour le sitemap:', error);
-    // L'erreur n'empêchera pas la génération du sitemap de base
+    console.error('Erreur lors de la récupération des vidéos pour le sitemap:', error);
   }
   
-  return [...staticPages, ...dynamicPages];
+  // Récupération des articles de blog de Sanity
+  let blogPages: MetadataRoute.Sitemap = [];
+  try {
+    const client = createClient({
+      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+      apiVersion: '2023-05-03',
+      useCdn: false,
+    });
+    
+    const blogs = await client.fetch(`*[_type == "post"] {
+      slug,
+      _updatedAt
+    }`);
+    
+    if (Array.isArray(blogs)) {
+      blogPages = blogs.map(blog => ({
+        url: `${baseUrl}/blog/${blog.slug.current}`,
+        lastModified: new Date(blog._updatedAt).toISOString(),
+        changeFrequency: 'daily' as const,
+        priority: 0.7,
+      }));
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération des articles de blog:', error);
+  }
+  
+  // Combinez toutes les pages
+  return [...staticPages, ...videoPages, ...blogPages];
 }
