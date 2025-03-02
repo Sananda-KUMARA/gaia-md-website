@@ -29,7 +29,7 @@ const Tarifs: NextPage = () => {
               size={250}
               strokeWidth={20}
               progress={80}
-              primaryColor="green"
+              primaryColor="blue"
               backgroundColor="gray"
               showPercentage={true}
               resetOnHover={true}
