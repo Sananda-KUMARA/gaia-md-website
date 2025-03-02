@@ -9,11 +9,11 @@ const CV: NextPage = () => {
     <>
       <Header />
       <div className="container mx-auto px-4 py-8 mt-24">
-        <div className="flex overflow-x-auto space-x-8 items-center justify-center">
-          <div className="flex flex-col items-center text-center flex-shrink-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center items-center">
+          <div className="flex flex-col items-center text-center">
             <ProgressRing
-              size={150}
-              strokeWidth={10}
+              size={250}
+              strokeWidth={20}
               progress={80}
               primaryColor="green"
               backgroundColor="gray"
@@ -24,10 +24,10 @@ const CV: NextPage = () => {
             <p className="mt-4 text-lg font-semibold">Adobe Première Pro</p>
           </div>
          
-          <div className="flex flex-col items-center text-center flex-shrink-0">
+          <div className="flex flex-col items-center text-center">
             <ProgressRing
-              size={150}
-              strokeWidth={10}
+              size={250}
+              strokeWidth={20}
               progress={80}
               primaryColor="blue"
               backgroundColor="gray"
@@ -37,10 +37,10 @@ const CV: NextPage = () => {
             />
             <p className="mt-4 text-lg font-semibold">Adobe After Effects</p>
           </div>
-          <div className="flex flex-col items-center text-center flex-shrink-0">
+          <div className="flex flex-col items-center text-center">
             <ProgressRing
-              size={150}
-              strokeWidth={10}
+              size={250}
+              strokeWidth={20}
               progress={30}
               primaryColor="red"
               backgroundColor="gray"
@@ -50,10 +50,10 @@ const CV: NextPage = () => {
             />
             <p className="mt-4 text-lg font-semibold">Adobe Photoshop</p>
           </div>
-          <div className="flex flex-col items-center text-center flex-shrink-0">
+          <div className="flex flex-col items-center text-center">
             <ProgressRing
-              size={150}
-              strokeWidth={10}
+              size={250}
+              strokeWidth={20}
               progress={30}
               primaryColor="orange"
               backgroundColor="gray"
