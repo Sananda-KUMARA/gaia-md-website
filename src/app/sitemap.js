@@ -1,6 +1,6 @@
 export default async function sitemap() {
   const baseUrl = process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_DOMAIN
+    ? process.env.NEXT_PUBLIC_DOMAIN || 'https://gaia.movie'
     : 'http://localhost:3000';
 
   // Pages statiques
