@@ -164,41 +164,54 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Onglets */}
-        <div className="mb-6 border-b border-gray-200">
-          <nav className="-mb-px flex space-x-8">
-            <button
-              onClick={() => setActiveTab('videos')}
-              className={`${
-                activeTab === 'videos'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
-            >
-              Vidéos
-            </button>
-            <button
-              onClick={() => setActiveTab('users')}
-              className={`${
-                activeTab === 'users'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
-            >
-              Utilisateurs
-            </button>
-            <button
-              onClick={() => setActiveTab('settings')}
-              className={`${
-                activeTab === 'settings'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
-            >
-              Paramètres
-            </button>
-          </nav>
-        </div>
+       {/* Onglets */}
+<div className="mb-6 border-b border-gray-200">
+  <nav className="-mb-px flex space-x-8">
+    <button
+      onClick={() => setActiveTab('videos')}
+      className={`${
+        activeTab === 'videos'
+          ? 'border-blue-500 text-blue-600'
+          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+      } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+    >
+      Vidéos
+    </button>
+    
+    <button
+      onClick={() => setActiveTab('users')}
+      className={`${
+        activeTab === 'users'
+          ? 'border-blue-500 text-blue-600'
+          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+      } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+    >
+      Utilisateurs
+    </button>
+
+    <button
+      onClick={() => setActiveTab('blog')}
+      className={`${
+        activeTab === 'blog'
+          ? 'border-blue-500 text-blue-600'
+          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+      } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+    >
+      Blog
+    </button>
+
+    <button
+      onClick={() => setActiveTab('settings')}
+      className={`${
+        activeTab === 'settings'
+          ? 'border-blue-500 text-blue-600'
+          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+      } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+    >
+      Paramètres
+    </button>
+  </nav>
+</div>
 
         {/* Contenu des onglets */}
         <div className="bg-white shadow rounded-lg">
@@ -236,6 +249,26 @@ export default function AdminDashboard() {
               </div>
             </div>
           )}
+
+          {activeTab === 'blog' && (
+          <div className="p-6 text-center">
+            <div className="mx-auto w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+              <svg className="h-12 w-12 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">Studio de gestion du blog</h3>
+            <p className="text-gray-600 mb-6">Accédez à l'interface complète de Sanity Studio pour gérer votre contenu</p>
+            <a 
+              href="/admin/studio" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+            >
+              Ouvrir Sanity Studio
+            </a>
+          </div>
+        )}
         </div>
       </main>
     </div>
