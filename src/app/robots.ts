@@ -6,7 +6,7 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/login/', '/admin/', '/private/'],
+        disallow: ['/login/', '/admin/'],
       },
       {
         userAgent: 'BadBot',
