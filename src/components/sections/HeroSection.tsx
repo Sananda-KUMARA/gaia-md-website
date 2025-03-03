@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image';
+import { AnimatedSection } from '@/components/animation/AnimatedSection';
 
 const stats = [
   { label: 'Une passion sans limite à part celle de notre imagination créative', value: 'Première Pro, After Effects, Da Vinci Resolve, Ciné 4D ...' },
@@ -95,8 +96,8 @@ export default function HeroSection() {
                 De la vidéo événementielle comme un mariage ou anniversaire, à la vidéo corporate pour votre entreprise, nous sommes là pour vous accompagner dans vos projets.
               </p>
             </div>
-            
-            {/* Image gallery */}
+               <AnimatedSection animation="slide" direction="right" className="my-8">
+        {/* Image gallery */}
             <div className="mt-14 flex justify-end gap-4 sm:gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
               <div className="ml-auto w-44 flex-none space-y-6 pt-32 sm:ml-0 sm:pt-60 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                 <div className="relative">
@@ -157,16 +158,23 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
+            </AnimatedSection>
           </div>
         </div>
       </div>
     </div>
+        
+           
 
 
 {/* Content section */}
+
       <div className="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
+       
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+             <AnimatedSection animation="slide" direction="left" className="my-8">
             <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl text-green-800">Notre objectif</h2>
+            </AnimatedSection>
             <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
               <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
                 <p className="text-xl/8 text-gray-600">
@@ -175,6 +183,8 @@ export default function HeroSection() {
                   Pour celà, nous sommes en mesure de vous proposer des prestations de tounage sur site (prise de viue, prise de sons, éclairage, ...) jusqu&lsquo;à l&lsquo;édition vidéo. Nous sommes également en mesure de vous proposer des prestations de motion design et d&lsquo;effets spéciaux.
                 </p>
               </div>
+              
+                <AnimatedSection animation="zoom" direction="down" className="my-8">
               <div className="lg:flex lg:flex-auto lg:justify-center">
                 <dl className="w-64 space-y-8 xl:w-80">
                   {stats.map((stat) => (
@@ -185,12 +195,15 @@ export default function HeroSection() {
                   ))}
                 </dl>
               </div>
+              </AnimatedSection>
             </div>
           </div>
+        
       </div>
 
 
  {/* Image section */}
+  <AnimatedSection animation="bounce" className="my-8">
       <div className="mt-10 sm:mt-10 xl:mx-auto xl:max-w-[640px]">
           <Image
             alt="Réglages colorimétrie dans logiciel montage"
@@ -200,8 +213,9 @@ export default function HeroSection() {
             className="aspect-5/2 w-full object-cover xl:rounded-3xl"
           />
         </div>
-
+</AnimatedSection>
         {/* Values section */}
+  <AnimatedSection animation="zoom" className="my-8">
         <div className="mx-auto mt-10 max-w-7xl px-6 sm:mt-40">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-4xl font-semibold tracking-tight text-pretty text-green-800 sm:text-5xl">Nos valeurs</h2>
@@ -218,7 +232,7 @@ export default function HeroSection() {
             ))}
           </dl>
         </div>
-
+</AnimatedSection>
 
     </main>
   )
