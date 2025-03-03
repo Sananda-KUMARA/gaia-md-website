@@ -6,11 +6,11 @@ import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
 // Footer navigation data
 const footerNavigation = {
   main: [
-    { name: 'A propos', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Emplois', href: '#' },
-    { name: 'Presse', href: '#' },
-    { name: 'Partenaires', href: '#' },
+    { name: 'A propos', href: '/about' },
+    { name: 'Blog', href: '/blog' },
+    // { name: 'Emplois', href: '#' },
+    // { name: 'Presse', href: '#' },
+    // { name: 'Partenaires', href: '#' },
   ],
   social: [
     {

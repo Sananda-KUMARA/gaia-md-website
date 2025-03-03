@@ -631,7 +631,6 @@ function AudioPlayerContent() {
           title="Rouvrir le lecteur audio"
         >
           <Music size={18} />
-          <span className="text-sm font-medium">Lecteur audio</span>
         </div>
       )}
       
