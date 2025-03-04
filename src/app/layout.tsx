@@ -48,6 +48,8 @@ export default function RootLayout({
         <NextAuthSessionProvider>
           <AudioProvider>
              {children}
+             <Analytics />
+             <SpeedInsights />
         </AudioProvider>
         </NextAuthSessionProvider>
       </body>
