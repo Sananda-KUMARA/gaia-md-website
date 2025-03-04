@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     template: '%s | Gaïa Motion Design',
-    default: 'Gaia MD',
+    default: 'Gaïa MD',
   },
   description: 'Studio de création numérique spécialisée dans le motion design, l\'animation et le montage video.',
   keywords: ['Motion Design', 'Gaïa', 'Studio cratif', 'Montage vidéo'],
