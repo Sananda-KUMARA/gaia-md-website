@@ -28,14 +28,14 @@ export default function Header() {
           <div className="flex flex-1 justify-center lg:justify-start">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Gaia Motion Design</span>
-              <Image
+              {/* <Image
                 alt="Logo Gaia Motion Design"
                 src="/logos/logo.gif"
                 width={80}
                 height={80}
                 className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
                 priority
-              />
+              /> */}
             </Link>
           </div>
           
@@ -76,13 +76,13 @@ export default function Header() {
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Gaia Motion Design</span>
-                <Image
+                {/* <Image
                   alt="Logo Gaia Motion Design"
                   src="/logos/logo_HD_clean_transparent.png"
                   width={56}
                   height={56}
                   className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
-                />
+                /> */}
               </a>
               <button
                 type="button"

@@ -4,7 +4,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from 'next/font/google'
-import AudioProvider from '../components/ui/AudioProvider';
 import CookieConsentBanner from '../components/ui/CookieConsentBanner';
 import "./globals.css";
 
@@ -47,12 +46,10 @@ export default function RootLayout({
     <html lang="fr">
       <body>
         <NextAuthSessionProvider>
-          <AudioProvider>
              {children}
                <CookieConsentBanner />
              <Analytics />
              <SpeedInsights />
-        </AudioProvider>
         </NextAuthSessionProvider>
       </body>
     </html>
