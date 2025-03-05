@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from 'next/font/google'
 import AudioProvider from '../components/ui/AudioProvider';
+import CookieConsentBanner from '../components/ui/CookieConsentBanner';
 import "./globals.css";
 
 import NextAuthSessionProvider from './AuthProvider'
@@ -48,6 +49,7 @@ export default function RootLayout({
         <NextAuthSessionProvider>
           <AudioProvider>
              {children}
+               <CookieConsentBanner />
              <Analytics />
              <SpeedInsights />
         </AudioProvider>
